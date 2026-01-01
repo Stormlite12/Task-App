@@ -75,8 +75,7 @@ export default function TaskForm({ open, onClose, onSubmit, existingTitles, init
       timeTaken: safeTime,
       priority: ((priority || 'Medium') as Priority),
       status: ((status || 'Todo') as Status),
-      notes: notes.trim() || undefined,
-      ...(initial ? { id: initial.id } : {}),
+      notes: notes.trim() || undefined,      createdAt: initial?.createdAt || new Date().toISOString(),      ...(initial ? { id: initial.id } : {}),
     };
     onSubmit(payload);
     onClose();
