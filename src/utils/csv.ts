@@ -1,7 +1,7 @@
 import { Task } from '@/types';
 
 export function toCSV(tasks: ReadonlyArray<Task>): string {
-  
+
   // Fixed: Use explicit headers instead of deriving from first row
   const headers = ['id', 'title', 'revenue', 'timeTaken', 'priority', 'status', 'notes', 'createdAt', 'completedAt'];
   const rows = tasks.map(t => [
@@ -12,6 +12,8 @@ export function toCSV(tasks: ReadonlyArray<Task>): string {
     t.priority,
     t.status,
     escapeCsv(t.notes ?? ''),
+    t.createdAt,
+    t.completedAt ?? '',
   ]);
   return [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
 }
